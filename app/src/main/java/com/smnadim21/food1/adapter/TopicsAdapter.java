@@ -70,6 +70,7 @@ public class TopicsAdapter extends RecyclerView.Adapter<TopicsAdapter.MyViewHold
         // - replace the contents of the view with that element
         holder.tv_title.setText(mDataset.get(position).getTitle());
         holder.tv_desc.setText(mDataset.get(position).getDesc().substring(0,mDataset.get(position).getDesc().length()>255?255:mDataset.get(position).getDesc().length()) + ".... ");
+        holder.ll_loc.setVisibility(mDataset.get(position).getLoc().equals("null")?View.GONE:View.VISIBLE);
         holder.tv_loc.setText(mDataset.get(position).getLoc());
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -119,7 +120,7 @@ public class TopicsAdapter extends RecyclerView.Adapter<TopicsAdapter.MyViewHold
         // each data item is just a string in this case
         public TextView tv_title, tv_desc, tv_loc;
         ImageView imageView;
-        LinearLayout ll_card;
+        LinearLayout ll_card,ll_loc;
 
         public MyViewHolder(View v) {
             super(v);
@@ -127,6 +128,7 @@ public class TopicsAdapter extends RecyclerView.Adapter<TopicsAdapter.MyViewHold
             tv_desc = (TextView) v.findViewById(R.id.item_desc);
             tv_loc = (TextView) v.findViewById(R.id.item_loc);
             ll_card = v.findViewById(R.id.ll_card);
+            ll_loc = v.findViewById(R.id.ll_loc);
             imageView = v.findViewById(R.id.image1);
         }
     }
