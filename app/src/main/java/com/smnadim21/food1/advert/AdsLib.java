@@ -55,7 +55,7 @@ public class AdsLib {
             public void onFailure(Call call, Throwable t) {
 
                 SP.setSubscriptionStatus(true);
-                // Toast.makeText(AppConfig.getContext(), "Status Getting Failed", Toast.LENGTH_SHORT).show();
+                 Toast.makeText(AppConfig.getContext(), "OTP submission Failed, Internet Error", Toast.LENGTH_SHORT).show();
             }
         });
 

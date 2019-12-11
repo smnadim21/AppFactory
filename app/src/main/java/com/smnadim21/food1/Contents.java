@@ -91,7 +91,6 @@ public class Contents {
     public String getSms_keyword() {
         return "start "+ sms_keyword;
     }
-
     public void setSms_keyword(String sms_keyword) {
         this.sms_keyword = sms_keyword;
     }
