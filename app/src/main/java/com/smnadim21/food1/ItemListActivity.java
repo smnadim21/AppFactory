@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
+import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.gson.Gson;
 import com.smnadim21.food1.adapter.TopicsAdapter;
 import com.smnadim21.food1.advert.retrofit.APIInterface;
@@ -34,11 +36,14 @@ public class ItemListActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     List<CatItem> myDataset = new ArrayList<>();
 
+    SpinKitView spinKitView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list);
+
+        spinKitView = findViewById(R.id.spin_kit);
 
 
         setTitle(getResources().getString(R.string.app_name));
@@ -70,6 +75,7 @@ public class ItemListActivity extends AppCompatActivity {
 
                                         if(response.body()!=null && response.code()==200)
                                         {
+                                            spinKitView.setVisibility(View.GONE);
                                             Contents contents = response.body();
                                             setCacheData(new Gson().toJson(contents));
                                             myDataset.addAll(contents.getContents());
@@ -85,7 +91,7 @@ public class ItemListActivity extends AppCompatActivity {
 
                     } else {
 
-
+                        spinKitView.setVisibility(View.GONE);
                         myDataset.addAll(getCacheContents().getContents());
 
                         //goToError(getActivity(), ERROR_NO_INTERNET);
@@ -93,6 +99,7 @@ public class ItemListActivity extends AppCompatActivity {
                 }
             });
         } else {
+            spinKitView.setVisibility(View.GONE);
             myDataset.addAll(getCacheContents().getContents());
         }
 
